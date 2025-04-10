@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flores amarillas</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif; /* Cambia la fuente del texto */
+    }
+
+    .flower {
+        position: absolute;
+        color: yellow; /* Color amarillo */
+        font-size: 24px; /* Tamaño de fuente de las flores */
+        opacity: 0; /* Inicialmente invisible */
+        animation: grow 5s linear; /* Nueva animación */
+        z-index: 1; /* Aparecerá por encima del confeti */
+    }
+
+    .confetti {
+        position: absolute;
+        font-size: 24px; /* Tamaño de fuente del confeti */
+        opacity: 0.8;
+        animation: confetti-fall 3s ease-out infinite;
+        z-index: 0; /* Aparecerá detrás del mensaje */
+    }
+
+    .message-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2; /* Aparecerá por encima del confeti */
+    }
+
+    .message {
+        color: #FF69B4; /* Color rosa */
+        font-size: 28px; /* Tamaño de fuente del mensaje */
+        font-weight: bold; /* Texto en negrita */
+        text-align: center; /* Alineación centrada */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+    }
+
+    .dedication {
+        color: #FF69B4; /* Color rosa */
+        font-size: 20px; /* Tamaño de fuente de la dedicatoria */
+        text-align: center; /* Alineación centrada */
+        margin-top: 20px; /* Espacio superior */
+    }
+
+    @keyframes grow {
+        0% {
+            transform: scale(0); /* Escala 0 al inicio */
+            opacity: 0; /* Inicialmente invisible */
+        }
+        100% {
+            transform: scale(9); /* Ajusta el tamaño máximo al 60% */
+            opacity: 1; /* Se hace visible */
+        }
+    }
+
+    @keyframes confetti-fall {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100vh);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="message-container">
+    <div class="message">
+        Te amo
+    </div>
+    <div class="dedication">
+        Alejandro Perez
+    </div>
+</div>
+<script>
+    // Función para crear una flor en la pantalla
+    function createFlower() {
+        // Crea un nuevo elemento <div> para representar la flor
+        var flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = "🌻"; // Emoji de la flor
+        
+        // Establece la posición aleatoria para la flor
+        var left = Math.random() * window.innerWidth;
+        var top = Math.random() * window.innerHeight;
+        flower.style.left = left + "px";
+        flower.style.top = top + "px";
+        
+        // Agrega la flor al cuerpo del documento
+        document.body.appendChild(flower);
+
+        // Elimina la flor después de 5 segundos
+        setTimeout(function() {
+            flower.remove();
+        }, 5000);
+    }
+    
+    // Función para hacer caer confeti
+    function confettiFall() {
+        // Crea un nuevo elemento <div> para representar el confeti
+        var confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.innerHTML = "🌸"; // Emoji del confeti
+        
+        // Establece la posición aleatoria para el confeti
+        var left = Math.random() * window.innerWidth;
+        var top = Math.random() * window.innerHeight;
+        confetti.style.left = left + "px";
+        confetti.style.top = top + "px";
+        
+        // Agrega el confeti al cuerpo del documento
+        document.body.appendChild(confetti);
+
+        // Elimina el confeti después de 3 segundos
+        setTimeout(function() {
+            confetti.remove();
+        }, 3000);
+    }
+    
+    // Función para hacer crecer las flores de forma independiente
+    function growFlowers() {
+        // Crea una flor cada segundo
+        setInterval(createFlower, 1000);
+        
+        // Hace caer confeti cada 0.5 segundos
+        setInterval(confettiFall, 500);
+    }
+
+    // Llama a la función para hacer crecer las flores y hacer caer el confeti
+    growFlowers();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
